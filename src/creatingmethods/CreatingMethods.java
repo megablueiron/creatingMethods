@@ -18,6 +18,7 @@ public class CreatingMethods {
         
         //declaring and initalizing all variables that are used in for the methods
         int choice = 0;
+        boolean state = false;
         double side1 = 0;
         double side2 = 0;
         double speed1 = 0;
@@ -34,7 +35,7 @@ public class CreatingMethods {
         Scanner keyedInput = new Scanner(System.in);
         
         //This menu system will loop as long as the user does not select the exit option
-        while (choice != 6) {
+        do {
         
         //printing out the menu header
         System.out.println("");
@@ -115,10 +116,39 @@ public class CreatingMethods {
             System.out.println("Input a number");
             number = keyedInput.nextInt();
             
-            prime((int)number);
+            state = prime((int)number);
+            
+            if (!state){
+                System.out.println(number + " is a prime number.");
+            }
+            else {
+                System.out.println(number + " is not a prime number.");
+            }
         }
-    }
+        if (choice == 6)
+        {
+            System.out.println("Input the first side in m");
+            side1 = keyedInput.nextInt();
+            
+            System.out.println("Input the second side in m");
+            side2 = keyedInput.nextInt();
+            
+            System.out.println("The hypotenuse of the triangle is " + hypotenuse(side1,side2) + "m");
+        }
+        if (choice == 7)
+        {
+            System.out.println("Input the first number");
+            num1 = keyedInput.nextInt();
+            
+            System.out.println("Input the second number");
+            num2 = keyedInput.nextInt();
+            
+            System.out.println("The sum of the two numbers is " + sum(num1,num2));
+        }
+    } while (choice != 6);
  }
+
+    
     /**
      * perimeter() takes two sides and multiplies each side by two and adds them
      * @param - side 1
@@ -169,23 +199,42 @@ public static double sphereVolume(double n1){
     /**
      * prime() takes an integer and checks if it is prime by dividing it until it finds a factor and outputs if its prime or not
      * @param - an integer
-     * @return - none
+     * @return - boolean statement
      */
-public static void prime(int n1){
+public static boolean prime(int n1){
     
-     boolean flag = false;
-        for(int i = 2; i <= n1/2; ++i)
+    boolean flag = false;
+    for(int i = 2; i <= n1/2; ++i)
+    {
+        // condition for nonprime number
+        if(n1 % i == 0)
         {
-            // condition for nonprime number
-            if(n1 % i == 0)
-            {
-                flag = true;
-                break;
-            }
+            flag = true;
+            break;
         }
-        if (!flag)
-            System.out.println(n1 + " is a prime number.");
-        else
-            System.out.println(n1 + " is not a prime number.");
+    }
+    return(flag);
+}
+
+public static double hypotenuse(double n1, double n2){
+    
+    double hypot = Math.sqrt((n1*n1)+(n2*n2));
+    return(hypot);
+}
+
+public static double sum(double n1, double n2){
+
+    double sum = n1 + n2;
+    return (sum);
+}
+
+public static int factorial(double n1){
+
+    int number = 0;
+    for (int i=0; i < n1; i++){
+        
+        
+}
+    return(n1);
 }
 }
